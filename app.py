@@ -3,6 +3,7 @@ from flask_restful import Resource, Api
 from flask_jwt import JWT, jwt_required
 
 from security import authenticate, identity
+from user import UserRegister
 
 app = Flask(__name__)
 app.secret_key = 'sachin'
@@ -18,10 +19,11 @@ class Clerk(Resource):
 
     def post(self, username):
         data = request.get_json()
-        return {'message': 'date|time: ' + data['date'] + '|' + data['time'] }
+        return {'message': data['status'] + '-' + 'date|time: ' + data['date'] + '|' + data['time'] }
 
 
 api.add_resource(Clerk, '/clerk/<string:username>')
+api.add_resource(UserRegister, '/register')
 
 app.run(debug=True)
 
