@@ -4,7 +4,8 @@ from db import db
 class TimeSheetModel(db.Model):
     __tablename__ = 'time_sheet'
 
-    username = db.Column(db.String(80), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80))
     date = db.Column(db.String(80))
     day = db.Column(db.String(80))
     timee = db.Column(db.String(80))
@@ -14,11 +15,12 @@ class TimeSheetModel(db.Model):
         self.day = day
         self.username = username
         self.timee = timee
+        # self.id = id
 
     def json(self):
         return {"username": self.username, "date": self.date,
                 "day": self.day,
-                "timee": self.timee
+                "time": self.timee
         }
 
     @classmethod
