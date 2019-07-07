@@ -5,8 +5,8 @@ class TimeSheetModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80))
-    timestamp_in = db.Column(db.String(80))
-    timestamp_out = db.Column(db.String(80))
+    timestamp_in = db.Column(db.DateTime)
+    timestamp_out = db.Column(db.DateTime)
 
     def __init__(self, username, timestamp_in, timestamp_out):
         self.username = username
