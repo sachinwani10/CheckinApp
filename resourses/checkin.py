@@ -1,6 +1,7 @@
 # https://stackoverflow.com/questions/26662702/what-is-the-datetime-format-for-flask-restful-parser
 from flask_restful import Resource, reqparse
 from models.session_sheet import SessionModel
+from datetime import datetime
 
 class Checkin(Resource):
     parser = reqparse.RequestParser()
@@ -10,6 +11,7 @@ class Checkin(Resource):
 
     def post(self):
         data = Checkin.parser.parse_args()
-        record = SessionModel(data['username'], data['timestamp_in'], None)
+        _timestamp = datetime.strptime(data['timestamp_in'], '%Y-%d-%m %H:%M:%S.%f')
+        record = SessionModel(data['username'], _timestamp, None)
         record.save_checkin()
         return {"message": "checked in at " + data['timestamp_in']}
