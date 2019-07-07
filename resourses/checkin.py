@@ -1,6 +1,6 @@
 # https://stackoverflow.com/questions/26662702/what-is-the-datetime-format-for-flask-restful-parser
 from flask_restful import Resource, reqparse
-from session_sheet import SessionModel
+from models.session_sheet import SessionModel
 
 class Checkin(Resource):
     parser = reqparse.RequestParser()

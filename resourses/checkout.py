@@ -1,5 +1,5 @@
 from flask_restful import Resource, reqparse
-from session_sheet import SessionModel
+from models.session_sheet import SessionModel
 
 class Checkout(Resource):
     parser = reqparse.RequestParser()
@@ -8,7 +8,7 @@ class Checkout(Resource):
     parser.add_argument('timestamp_out', type=str, required=True)
 
     def post(self):
-        data = Checkin.parser.parse_args()
+        data = Checkout.parser.parse_args()
         record = SessionModel(data['username'], None, data['timestamp_out'])
         record.save_checkout()
         return {"message": "checked out at " + data['timestamp_out']}

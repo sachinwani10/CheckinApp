@@ -1,4 +1,5 @@
 from models.time_sheet import TimeSheetModel as TS
+from flask_restful import Resource
 
 class TotalHours(Resource):
     def get(self, username):

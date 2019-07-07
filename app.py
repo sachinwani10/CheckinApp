@@ -10,13 +10,14 @@ from resourses.totalhours import TotalHours
 # from resourses.clerk import Clerk, ClerkTotalHours
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://user_standard:sourcecode10@127.0.0.1:3306/checkindb'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://user_standard:sourcecode10@127.0.0.1:3306/checkinapp'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'sachin'
 api = Api(app)
 
 @app.before_first_request
 def create_tables():
+    # db.metadata.clear()
     db.create_all()
 
 jwt = JWT(app, authenticate, identity)  # /auth

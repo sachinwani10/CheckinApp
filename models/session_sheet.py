@@ -1,13 +1,13 @@
 from db import db
-from time_sheet import TimeSheetModel as TS
+from models.time_sheet import TimeSheetModel as TS
 
 class SessionModel(db.Model):
-    __tablename__ = 'time_sheet'
+    __tablename__ = 'active_sessions'
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80))
-    timestamp_in = db.Column(db.String)
-    timestamp_out = db.Column(db.String)
+    timestamp_in = db.Column(db.String(80))
+    timestamp_out = db.Column(db.String(80))
 
     def __init__(self, username, timestamp_in, timestamp_out):
         self.username = username
@@ -40,7 +40,7 @@ class SessionModel(db.Model):
 
     def delete_session(self, record):
         db.session.delete(record)
-        db.commit()
+        db.session.commit()
 
 
 # https://stackoverflow.com/questions/6699360/flask-sqlalchemy-update-a-rows-information
