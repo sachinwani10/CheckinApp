@@ -1,4 +1,3 @@
-import sqlite3
 from db import db
 
 class TimeSheetModel(db.Model):
@@ -6,16 +5,13 @@ class TimeSheetModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80))
-    date = db.Column(db.String(80))
-    day = db.Column(db.String(80))
-    timee = db.Column(db.String(80))
+    timestamp_in = db.Column(db.String)
+    timestamp_out = db.Column(db.String)
 
-    def __init__(self, date, day, username, timee):
-        self.date = date
-        self.day = day
+    def __init__(self, username, timestamp_in, timestamp_out):
         self.username = username
-        self.timee = timee
-        # self.id = id
+        self. timestamp_in = timestamp_in
+        self.timestamp_out = timestamp_out
 
     def json(self):
         return {"username": self.username, "date": self.date,

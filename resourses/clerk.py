@@ -17,7 +17,7 @@ class Clerk(Resource):
 
     def post(self, username):
         data = request.get_json()
-        record = TS(data['date'], data['day'], username, data['timee'])
+        record = TS(username, data['timestamp_in'], data['timestamp_out'])
         record.save_to_db()
         # possible values for action = "checkin/checkout"
         # TS.save_to_db(data['date'], data['day'], username, data['timee'] )
