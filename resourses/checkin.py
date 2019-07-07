@@ -10,12 +10,12 @@ class Checkin(Resource):
     parser.add_argument('username', type=str, required=True)
     parser.add_argument('timestamp_in', type=str, required=True)
 
-    @jwt_required()
+    # @jwt_required()
     def post(self):
         data = Checkin.parser.parse_args()
-        if UserModel.find_by_username(data['username']):
-            _timestamp = datetime.strptime(data['timestamp_in'], '%Y-%d-%m %H:%M:%S.%f')
-            record = SessionModel(data['username'], _timestamp, None)
-            record.save_checkin()
-            return {"message": "checked in at " + data['timestamp_in']}
-        return {"message": data['username'] + " is not a registerd user" }
+        # if UserModel.find_by_username(data['username']):
+        _timestamp = datetime.strptime(data['timestamp_in'], '%Y-%d-%m %H:%M:%S.%f')
+        record = SessionModel(data['username'], _timestamp, None)
+        record.save_checkin()
+        return {"message": "checked in at " + data['timestamp_in']}
+        # return {"message": data['username'] + " is not a registerd user" }

@@ -10,7 +10,7 @@ class Checkout(Resource):
     parser.add_argument('username', type=str, required=True)
     parser.add_argument('timestamp_out', type=str, required=True)
 
-    @jwt_required()
+    # @jwt_required()
     def post(self):
         data = Checkout.parser.parse_args()
         if UserModel.find_by_username(data['username']):

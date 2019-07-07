@@ -1,13 +1,17 @@
 from db import db
 from models.time_sheet import TimeSheetModel as TS
+# from models.user import UserModel
 
 class SessionModel(db.Model):
     __tablename__ = 'active_sessions'
 
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80))
     timestamp_in = db.Column(db.DateTime)
     timestamp_out = db.Column(db.DateTime)
+
+    username = db.Column(db.String(80), db.ForeignKey('users.username'))
+    user = db.relationship('UserModel')
+
 
     def __init__(self, username, timestamp_in, timestamp_out):
         self.username = username
