@@ -28,3 +28,8 @@ class UserRegister(Resource):
         user.save_to_db()
 
         return {'message': 'User created successfully'}, 201
+
+    # def delete(self):
+    #     data = UserRegister.parser.parse_args()
+    #     # code to delete user_standard
+    #     # only super user should be authorized to delete(handle at front end)

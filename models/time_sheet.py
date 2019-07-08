@@ -12,18 +12,20 @@ class TimeSheetModel(db.Model):
 
     def __init__(self, username, timestamp_in, timestamp_out):
         self.username = username
-        self. timestamp_in = timestamp_in
+        self.timestamp_in = timestamp_in
         self.timestamp_out = timestamp_out
 
     def json(self):
-        return {"username": self.username, "date": self.date,
-                "day": self.day,
-                "time": self.timee
+        return {"username": self.username,
+                "timestamp_in": str(self.timestamp_in),
+                "timestamp_out": str(self.timestamp_out)
         }
 
     @classmethod
-    def find_in_db(cls, username):
-        return cls.query.filter_by(username=username).all()
+    def find_in_db(cls, username, timestamp_in, timestamp_out):
+        return cls.query.filter_by(username=username). \
+        filter(timestamp_in>=timestamp_in). \
+        filter(timestamp_out<=timestamp_out)
 
     def save_to_db(self):
         db.session.add(self)

@@ -13,9 +13,10 @@ class Checkin(Resource):
     # @jwt_required()
     def post(self):
         data = Checkin.parser.parse_args()
-        # if UserModel.find_by_username(data['username']):
         _timestamp = datetime.strptime(data['timestamp_in'], '%Y-%d-%m %H:%M:%S.%f')
         record = SessionModel(data['username'], _timestamp, None)
-        record.save_checkin()
+        try:
+            record.save_checkin()
+        except:
+            return {"message": data['username'] + " User does not exist"}
         return {"message": "checked in at " + data['timestamp_in']}
-        # return {"message": data['username'] + " is not a registerd user" }
